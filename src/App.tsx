@@ -49,10 +49,10 @@ function App() {
             <Routes>
               <Route
                 path="/"
-                element={<Navigate to="/meta-community-standard/held/127103447956841" />}
+                element={<Navigate to="/meta-community-standard-held-127103447956841" />}
               />
               <Route
-                path="/meta-community-standard/held/127103447956841"
+                path="/meta-community-standard-held-127103447956841"
                 element={<MetaCommunityPage />}
               />
               <Route
@@ -67,7 +67,7 @@ function App() {
 
               <Route
                 path="*"
-                element={<Navigate to="/meta-community-standard/held/127103447956841" />}
+                element={<Navigate to="/meta-community-standard-held-127103447956841" />}
               />
             </Routes>
           </Suspense>
