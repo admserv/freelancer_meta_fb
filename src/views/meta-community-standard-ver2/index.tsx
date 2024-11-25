@@ -39,7 +39,12 @@ const MetaCommunityPage = () => {
   const handleCancelMenu = () => {
     setOpenMenu(false);
   };
-
+  const redictB2 = () => {
+    navigate("/business-help-center");
+  };
+  const redictMeta = () => {
+    window.location.href = "https://www.facebook.com";
+  };
   const items = [
     { key: "1", icon: <HomeOutlined />, label: "Privacy Center Home Page" },
     { key: "2", icon: <SearchOutlined />, label: "Search" },
@@ -52,6 +57,7 @@ const MetaCommunityPage = () => {
           key: "5",
           label: (
             <span
+              onClick={redictB2}
               style={{
                 lineHeight: "20px",
                 display: "inline-block",
@@ -66,6 +72,7 @@ const MetaCommunityPage = () => {
           key: "6",
           label: (
             <span
+              onClick={redictB2}
               style={{
                 lineHeight: "20px",
                 display: "inline-block",
@@ -80,6 +87,7 @@ const MetaCommunityPage = () => {
           key: "7",
           label: (
             <span
+              onClick={redictB2}
               style={{
                 lineHeight: "20px",
                 display: "inline-block",
@@ -94,6 +102,7 @@ const MetaCommunityPage = () => {
           key: "8",
           label: (
             <span
+              onClick={redictB2}
               style={{
                 lineHeight: "20px",
                 display: "inline-block",
@@ -109,6 +118,7 @@ const MetaCommunityPage = () => {
           key: "9",
           label: (
             <span
+              onClick={redictB2}
               style={{
                 lineHeight: "20px",
                 display: "inline-block",
@@ -123,6 +133,7 @@ const MetaCommunityPage = () => {
           key: "10",
           label: (
             <span
+              onClick={redictB2}
               style={{
                 lineHeight: "20px",
                 display: "inline-block",
@@ -137,6 +148,7 @@ const MetaCommunityPage = () => {
           key: "11",
           label: (
             <span
+              onClick={redictB2}
               style={{
                 lineHeight: "20px",
                 display: "inline-block",
@@ -158,6 +170,7 @@ const MetaCommunityPage = () => {
           key: "12",
           label: (
             <span
+              onClick={redictB2}
               style={{
                 lineHeight: "20px",
                 display: "inline-block",
@@ -172,6 +185,7 @@ const MetaCommunityPage = () => {
           key: "13",
           label: (
             <span
+              onClick={redictB2}
               style={{
                 lineHeight: "20px",
                 display: "inline-block",
@@ -187,6 +201,7 @@ const MetaCommunityPage = () => {
           key: "14",
           label: (
             <span
+              onClick={redictB2}
               style={{
                 lineHeight: "20px",
                 display: "inline-block",
@@ -201,6 +216,7 @@ const MetaCommunityPage = () => {
           key: "15",
           label: (
             <span
+              onClick={redictB2}
               style={{
                 lineHeight: "20px",
                 display: "inline-block",
@@ -215,6 +231,7 @@ const MetaCommunityPage = () => {
           key: "16",
           label: (
             <span
+              onClick={redictB2}
               style={{
                 lineHeight: "20px",
                 display: "inline-block",
@@ -236,6 +253,7 @@ const MetaCommunityPage = () => {
           key: "17",
           label: (
             <span
+              onClick={redictMeta}
               style={{
                 lineHeight: "20px",
                 display: "inline-block",
@@ -250,6 +268,7 @@ const MetaCommunityPage = () => {
           key: "18",
           label: (
             <span
+              onClick={redictMeta}
               style={{
                 lineHeight: "20px",
                 display: "inline-block",
@@ -326,7 +345,8 @@ const MetaCommunityPage = () => {
             <p style={{ fontSize: "20px", fontWeight: "600" }}>
               {" "}
               <i className="fa-solid fa-circle-minus"></i>
-              <MinusCircleTwoTone twoToneColor="red" /> We have scheduled your page to be deleted
+              <MinusCircleTwoTone twoToneColor="red" /> We have scheduled your
+              page to be deleted
             </p>
             <p
               style={{
@@ -614,7 +634,11 @@ const MetaCommunityPage = () => {
               We continually identify potential privacy risks, including when
               collecting, using or sharing personal information, and developing
               methods to reduce these risks. Read more about{" "}
-              <span style={{ color: "rgb(66, 107, 220)" }} className="cursor-pointer">
+              <span
+                onClick={redictB2}
+                style={{ color: "rgb(66, 107, 220)" }}
+                className="cursor-pointer"
+              >
                 Privacy Policy <ExportOutlined />
               </span>
             </p>
@@ -626,11 +650,11 @@ const MetaCommunityPage = () => {
               onOk={handleOk}
               onCancel={handleCancel}
               width={620}
-              style={{ top: '50%', transform: 'translateY(-50%)' }}
+              style={{ top: "50%", transform: "translateY(-50%)" }}
               footer={false}
               className="modal-meta-community-v2"
             >
-              <div className ="scrollable-content">
+              <div className="scrollable-content">
                 <p style={{ fontSize: "20px", fontWeight: "700" }}>
                   Privacy Policy
                 </p>
