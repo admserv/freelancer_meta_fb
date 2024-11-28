@@ -29,7 +29,7 @@ const MetaCommunityPage = () => {
         </div>
       </div>
       <div className="flex justify-center w-full items-center mt-28">
-        <div className="lg:w-2/5 md:w-2/3 w-11/12 bg-white flex-row">
+        <div className="lg:w-[30%] md:w-2/3 w-11/12 bg-white flex-row rounded-xl">
           <div className="w-20 h-20 mt-6 mx-auto">
             <img src="/images/lock.png" alt="" />
           </div>
