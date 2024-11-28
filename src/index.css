@@ -15,3 +15,6 @@ code {
 .supplier--table--name-column {
   max-width: 200px;
 } */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
