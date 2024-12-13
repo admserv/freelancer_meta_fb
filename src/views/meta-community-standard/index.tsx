@@ -1,162 +1,95 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { Button, Flex, Menu, Input, Modal } from "antd";
+import React, { useState } from "react";
+import { MinusCircleTwoTone } from "@ant-design/icons";
 import {
   faCheckCircle,
   faAddressCard,
   faLock,
 } from "@fortawesome/free-solid-svg-icons";
-import { Button, Flex } from "antd";
-import moment from "moment";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../meta-community-standard/style.css";
-
 const MetaCommunityPage = () => {
   const navigate = useNavigate();
-  const currentTime = moment().format("MMMM DD, YYYY");
-  const redictMeta = () => {
-    window.location.href = "https://www.facebook.com";
+  const redictB2 = () => {
+    navigate("/infor");
   };
+  const today = new Date();
+  // Format ngày theo yêu cầu
+  const formattedDate = new Intl.DateTimeFormat("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  }).format(today);
   return (
-    <div className="container_meta">
-      <div className="left_div">
-        <div className="header">
+    <div className="w-full h-full bg-white overflow-scroll">
+      <div className="sm:w-11/12 md:w-2/3 lg:w-2.5/5 xl:w-2/5 w-11/12 mx-auto pt-14">
+        <div className="rounded-lg overflow-hidden mb-5">
           <img
-            onClick={redictMeta}
-            className="logo"
-            src="/images/fb.png"
+            className="mx-auto block mb-10 w-full h-full"
+            src="/images/auth.png"
             alt=""
-          />
-        </div>
-      </div>
-      <div className="flex justify-center w-full items-center mt-28">
-        <div className="lg:w-[30%] md:w-2/3 w-11/12 bg-white flex-row rounded-xl">
-          <div className="w-20 h-20 mt-6 mx-auto">
-            <img src="/images/lock.png" alt="" />
-          </div>
-          <div className="w-11/12 flex flex-row mx-auto mt-4">
-            <div className="text_content">
-              <p
-                className="text-center"
-                style={{
-                  fontSize: "22px",
-                  marginTop: "10px",
-                  fontWeight: "bold",
-                }}
-              >
-                The security of your account is at risk.
-              </p>
-              <p
-                style={{
-                  fontSize: "15px",
-                  fontWeight: "400",
-                  lineHeight: 1.5,
-                  marginTop: "16px",
-                  marginBottom: "10px",
-                  fontFamily: "inherit",
-                }}
-              >
-                We have temporarily blocked your account because your Facebook
-                Protect settings have been modified.
-              </p>
-              <div className="avt">
-                <div className="bg-blue-500 w-8 h-8 rounded-full flex justify-center items-center">
-                  <FontAwesomeIcon icon={faLock} style={{ color: "#ffffff" }} />
-                </div>
-                <div className="middle ml-4">
-                  <p
-                    style={{
-                      fontSize: "16px",
-                      fontWeight: "bold",
-                      marginBottom: "6px",
-                    }}
+          ></img>
+          <p className="font-bold text-2xl">Welcome To Facebook Protect.</p>
+          <p className="my-5 text-[15px] leading-6">
+            Your page's accessibility is limited, so we ask that higher security
+            requirements be applied to that account. We created this security
+            program to unlock your Pages.
+            <a
+              href="https://www.facebook.com/help"
+              className="text-blue-500 hover:underline block"
+            >
+              More information
+            </a>
+          </p>
+          <div className="px-[14px]">
+            <ol className="relative text-gray-500 border-s-2 border-gray-200">
+              <li className="mb-10 ms-6">
+                <span className="absolute flex items-center justify-center w-6 h-6 bg-[#C4C4C4] rounded-full -start-[14px] ring-4 ring-white">
+                  <svg
+                    className="w-3 h-3 text-white"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 16 12"
                   >
-                    Your page was restricted on{" "}
-                    <span style={{ fontSize: "17px", fontWeight: "bold" }}>
-                      {" "}
-                      {currentTime}.
-                    </span>
-                  </p>
-                  <p
-                    style={{
-                      fontSize: "15px",
-                      // fontWeight: "450",
-                      opacity: "1",
-                    }}
-                  >
-                    We did this to protect your account from being suspended.
-                  </p>
-                </div>
-              </div>
-              {/* <p style={{ fontSize: '15px', fontWeight: '400', lineHeight: 1.5, marginTop: '36px', fontFamily: 'inherit' }}>We discovered that your page has violated the payment policy. In accordance with Facebook's Privacy Policy, You page will be disabled payments & ads manager from
-            <span style={{ fontSize: '17px', fontWeight: 'bold' }}> {currentTime}</span> </p> */}
-              <p
-                style={{
-                  fontSize: "15px",
-                  fontWeight: "400",
-                  lineHeight: 1.5,
-                  marginTop: "20px",
-                  fontFamily: "inherit",
-                }}
-              >
-                We will guide you through some steps to lift the page
-                restriction and unlock your account.
-              </p>
-
-              {/* <p style={{ fontSize: '17px', marginTop: '26px', fontWeight: 'bold', color: "#1a73e3" }}>More information</p>
-          <div style={{ display: 'flex', alignItems: 'center', marginTop: '20px' }}>
-            <FontAwesomeIcon icon={faCheckCircle} style={{ color: '#d5dae1', fontSize: '24px' }} /> <span style={{ fontSize: '14px', marginLeft: '8px', textAlign: 'center' }}>No one will able to see your posts until you've verified your payment method.</span>
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M1 5.917 5.724 10.5 15 1.5"
+                    ></path>
+                  </svg>
+                </span>
+                <h3 className="text-black text-[15px] leading-6">
+                  We've enabled advanced protections to unlock your Page.
+                </h3>
+              </li>
+              <li className="mb-10 ms-6">
+                <span className="absolute flex items-center justify-center w-6 h-6 bg-facebook rounded-full -start-[14px] ring-4 ring-white">
+                  <FontAwesomeIcon
+                    icon={faAddressCard}
+                    style={{ color: "#355797", fontSize: "18px" }}
+                  />{" "}
+                </span>
+                <h3 className="text-black text-[15px] leading-6">
+                  Below, we walk you through the process in detail and help you
+                  fully activate to unlock your Page.
+                </h3>
+              </li>
+            </ol>
           </div>
-          <div style={{ borderLeftColor: "black", borderLeftWidth: "3px", height: '10px' }}>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', marginTop: '20px' }}>
-            <FontAwesomeIcon icon={faAddressCard} style={{ color: 'blue', fontSize: '24px' }} /> <span style={{ fontSize: '14px', marginLeft: '8px', textAlign: 'center' }}>Below, you'll need to complete some steps to expedite the review of your account.</span>
-          </div> */}
-              {/* <Flex gap="small" wrap="wrap">
-                <Button
-                  onClick={() => navigate("/business-help-center")}
-                  style={{
-                    width: "100%",
-                    marginTop: "30px",
-                    height: "44px",
-                    marginBottom: "14px",
-                    fontSize: "15px",
-                    fontWeight: "500",
-                    
-                  }}
-                  type="primary"
-                >
-                  Get started
-                </Button>
-              </Flex> */}
-              <Flex gap="small" wrap="wrap">
-                <div
-                  style={{
-                    width: "100%",
-                    border: "2px solid blue", // Viền xanh bên ngoài
-                    padding: "1px", // Khoảng cách để tạo hiệu ứng viền
-                    display: "inline-block",
-                    borderRadius: "6px", // Bo góc nếu cần
-                    marginBottom: "20px",
-                    marginTop: "20px",
-                  }}
-                >
-                  <Button
-                    onClick={() => navigate("/business-help-center")}
-                    style={{
-                      width: "100%",
-                      height: "38px",
-                      fontSize: "15px",
-                      fontWeight: "500",
-                      border: "2px solid white", // Viền trắng bên trong
-                    }}
-                    type="primary"
-                  >
-                    Get started
-                  </Button>
-                </div>
-              </Flex>
-            </div>
-          </div>
+          <a
+            href="/infor"
+            className="block text-lg cursor-pointer bg-blue-500 w-full text-center xl:py-3 sm:py-3 py-3 text-white rounded-lg font-semibold"
+          >
+            Countinue
+          </a>
+          <p className="text-center block mt-3 mb-5 text-[15px] leading-6">
+            Your page was restricted on <strong>{formattedDate}.</strong>
+          </p>
         </div>
       </div>
     </div>

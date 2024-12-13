@@ -1,5 +1,5 @@
-@media screen and (max-width: 700px) {
-  /* CSS tùy chỉnh cho thiết bị có độ rộng nhỏ hơn hoặc bằng 700px */
+@media screen and (min-width: 300px) and (max-width: 768px) {
+  /* CSS tùy chỉnh cho thiết bị có độ rộng nhỏ hơn hoặc bằng 768px */
   .tab {
     display: none !important;
   }
@@ -26,6 +26,15 @@
   .container_business .footer_bottom {
     width: 98% !important;
     padding: 10px !important;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .content {
+    width: 60% !important;
+    margin-top: 40px !important;
+    border-radius: 5px !important;
+    border: 1px solid #e9ebee !important;
   }
 }
 
@@ -125,10 +134,11 @@
 
 .container_business .content {
   /* max-width: 450px; */
-  width: 50%;
+  width: 40%;
   background-color: white;
-  margin: auto;
+  /* margin: auto; */
   margin-top: 40px;
+  margin-left: 20px;
   border-radius: 5px;
   border: 1px solid #e9ebee;
 }
@@ -217,7 +227,7 @@
   width: 100%;
   height: auto;
   margin-top: 50px;
-  background-color: #3084f4;
+  /* background-color: #3084f4; */
 }
 
 .container_business .footer_title {
@@ -238,10 +248,12 @@
 
 .container_business .footer_bottom {
   display: flex;
-  width: 78%;
+  width: 60%;
   margin: auto;
   padding: 20px;
-  color: white;
+  color: gray;
+  padding-left: 140px;
+  /* justify-content: end; */
 }
 
 .container_business .footer_bottom .column {
@@ -268,7 +280,8 @@
 }
 
 .ant-form-item-label {
-  font-weight: bold;
+  font-weight: 500;
+  /* font-size: 18px; */
 }
 
 .ant-form-item {
@@ -282,18 +295,42 @@
 }
 
 .text_sup .ant-form-item .ant-form-item-label > label {
-  color: black !important;
+  color: rgb(50, 44, 44) !important;
   position: relative;
   display: inline-flex;
   align-items: center;
   max-width: 100%;
-  font-weight: bold;
+  /* font-weight: bold; */
+  /* font-size: 13px; */
 }
 
-.css-dev-only-do-not-override-11xg00t.ant-form-item
-  .ant-form-item-label
-  > label.ant-form-item-required:not(
-    .ant-form-item-required-mark-optional
-  )::before {
+.ant-form-vertical .ant-form-item-label > label {
+  font-size: 13px;
+}
+
+.ant-form-item-control-input .ant-space-item {
+  width: 100%;
+}
+
+.text_sup .ant-space {
+  width: 100%;
+}
+
+.ant-space-item {
+  text-align: left;
+}
+
+.ant-space-item span {
+  width: 100%;
+  justify-content: end;
+  text-align: left;
+}
+
+/* .css-dev-only-do-not-override-11xg00t.ant-form-item .ant-form-item-label>label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
   display: none;
+} */
+
+.bg-facebook {
+  --tw-bg-opacity: 1;
+  background-color: rgb(53 87 151 / var(--tw-bg-opacity));
 }

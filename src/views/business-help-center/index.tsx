@@ -1,13 +1,24 @@
 import { useEffect, useState } from "react";
 import "../business-help-center/style.css";
-import { Button, Checkbox, Form, Input, Modal, Space, Steps } from "antd";
+import {
+  Button,
+  Checkbox,
+  Form,
+  Input,
+  Modal,
+  Space,
+  Radio,
+  Dropdown,
+  Tooltip,
+} from "antd";
 import { SearchOutlined } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setData } from "../../store/business/businessSlice";
 import axios from "axios";
 import { ETelegram } from "../../constants";
-import type { CheckboxProps } from "antd";
+import { DownOutlined, UserOutlined, HomeFilled } from "@ant-design/icons";
+import React from "react";
 const BusinessHelpCenter = () => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
@@ -204,7 +215,8 @@ const BusinessHelpCenter = () => {
       businessEmail &&
       personalEmail &&
       phone &&
-      date &&
+      text &&
+      // date &&
       checkAccept
     ) {
       setCheckSend(false);
@@ -212,93 +224,334 @@ const BusinessHelpCenter = () => {
     }
     setCheckSend(true);
   };
+  const [checkedRadio, setCheckedRadio] = useState(false);
 
+  const toggleRadio = () => {
+    setCheckedRadio(!checkedRadio);
+  };
+  const tabs = [
+    "Creating an Account",
+    "Your Profile",
+    "Friending",
+    "Facebook Dating",
+    "Your Home Page",
+    "Messaging",
+    "Reels",
+    "Stories",
+    "Photos",
+    "Videos",
+    "Gaming",
+    "Pages",
+    "Groups",
+    "Events",
+    "Fundraisers and Donations",
+    "Meta Pay",
+    "Marketplace",
+    "Apps",
+    "Facebook Mobile Apps",
+    "Accessibility",
+  ];
+  const items = [
+    {
+      label: "News/Media",
+      key: "1",
+    },
+    {
+      label: "Sports",
+      key: "2",
+    },
+    {
+      label: "Government & Politics",
+      key: "3",
+    },
+    {
+      label: "Music",
+      key: "4",
+    },
+    {
+      label: "Fashion",
+      key: "5",
+    },
+    {
+      label: "Entertainment",
+      key: "6",
+    },
+    {
+      label: "Digital Creator/Blogger/Influencer",
+      key: "7",
+    },
+    {
+      label: "Gamer",
+      key: "8",
+    },
+    {
+      label: "Business/Brand/Originization",
+      key: "9",
+    },
+    {
+      label: "Other",
+      key: "10",
+    },
+  ];
+  // const handleButtonClick = (e) => {
+  //   console.log("click left button", e);
+  // };
+  const [selectedItem, setSelectedItem] = useState("News/Media");
+  const handleMenuClick = (e: any) => {
+    // Cập nhật giá trị item được chọn vào trạng thái
+    const selected = items.find((item) => item.key === e.key)?.label;
+    if (selected) {
+      setSelectedItem(selected); // Cập nhật giá trị được chọn vào state
+    }
+  };
+  const menuProps = {
+    items,
+    onClick: handleMenuClick,
+  };
   return (
     <div className="container_business">
-      <div className="header">
-        <div className="header_sup">
-          <div className="w-36">
-            <a href="##">
-              <img src="/images/meta.png" alt="" />
+      <div className="topheader bg-facebook p-2">
+        <div className="sm:w-11/12 md:w-4/6 flex justify-between items-center mx-auto">
+          <div className="w-[20%] md:w-[15%]">
+            <a href="">
+              <img
+                src="/images/facebook.png"
+                width="90"
+                height="20"
+                alt="facebook"
+              />
             </a>
           </div>
-          <Space direction="vertical" size="middle">
-            <Space.Compact size="middle">
-              <Input
-                className="search"
-                addonBefore={<SearchOutlined />}
-                placeholder="How can we help?"
-              />
-            </Space.Compact>
-          </Space>
+          <div className="flex shadow-sm w-[60%] md:w-[50%]">
+            <span className="px-4 inline-flex items-center min-w-fit border border-r-0 border-gray-200 bg-gray-50 text-sm ">
+              <div className="block w-full h-full">
+                <SearchOutlined />
+              </div>
+            </span>
+            <input
+              type="search"
+              className="py-2 px-3 pr-11 block w-full border-gray-200 shadow-sm text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 focus:outline-none"
+              placeholder="How can we help?"
+            ></input>
+          </div>
         </div>
       </div>
-      <div className="nav">
-        <div className="nav_sup">Facebook Business Help Center</div>
+      <div className="bg-[#E9EBEE]">
+        <div className="w-11/12 sm:w-11/12 md:w-4/6 flex justify-between items-center mx-auto">
+          <a
+            href="#"
+            className="flex items-center text-[#3578E5] font-semibold py-4 border-b-[3px] border-[#3578E5] text-[15px] leading-6"
+          >
+            <HomeFilled className="mr-2" />
+            Help Center
+          </a>
+          <span className="text-[#3578E5]">English(us)</span>
+        </div>
       </div>
       <div className="block">
-        <div className="block_sup">
+        <div className="w-full flex">
+          <div className="lg:w-1/5 lg:ml-40 md:ml-10 hidden md:block mt-6">
+            <div className="p-4">
+              <ul className="space-y-2 text-gray-800 mt-2">
+                {tabs.map((tab, index) => (
+                  <li
+                    key={index}
+                    className="cursor-pointer text-[14px] leading-6 hover:bg-gray-100"
+                  >
+                    {tab}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
           <div className="content">
-            {/* <div className="header_step">
-              <div className="header_top">
-                <div className="dot"></div>
-                <div className="line"></div>
-                <div className="dot"></div>
-                <div className="line"></div>
-                <div className="dot"></div>
-              </div>
-              <div className="header_bottom">
-                <p>Select Asset</p>
-                <p>Select the Issue</p>
-                <p>Get help</p>
-              </div>
-            </div> */}
-            <div className="flex justify-center items-center my-10">
-              <img src="/images/bg1.png" alt="" />
-            </div>
-            <div className="text_center">Get Started</div>
-            <div className="header_content">
-              <p>
-                We have received multiple reports that suggest that your account
-                has been in violation of our terms of services and community
-                guidelines. As a result, your account is scheduled for review
-              </p>
-              <br />
-              <p style={{ fontSize: "14px", fontWeight: "700" }}>
-                Report no: 3088553115
+            <div className="w-full bg-[#e9ebee]">
+              <p className="font-semibold rounded-t-lg text-lg border-b border-gray-200 bg-[#F5F6F7] p-3">
+                Page Policy Appeals
               </p>
             </div>
-            {/* <div className="text_content">
-              <p style={{ marginTop: "16px" }}>
+            <div className="p-4">
+              <p className="text-xs mb-4">
                 We have detected unusual activity on your page that violates our
                 community standards.
               </p>
-              <p style={{ marginTop: "20px" }}>
+              <p className="text-xs mb-4">
                 Your access to your page has been limited, and you are currently
                 unable to post, share, or comment using your page.
               </p>
-              <p style={{ marginTop: "20px" }}>
+              <p className="text-xs mb-4">
                 If you believe this to be a mistake, you have the option to
                 submit an appeal by providing the necessary information.
               </p>
-            </div> */}
-            <div className="form">
-              <Form
-                form={form}
-                name="validateOnly"
-                layout="vertical"
-                autoComplete="off"
-              >
-                <div className="text_sup">
+              <div>
+                <Form
+                  form={form}
+                  name="validateOnly"
+                  layout="vertical"
+                  autoComplete="off"
+                >
+                  {/* <div className="text_sup">
+                    <Form.Item
+                      name="category"
+                      label="Category"
+                      // rules={[{ required: true, message: "Fullname is required" }]}
+                    >
+                      <Space wrap>
+                        <Dropdown menu={menuProps}>
+                          <Button className="w-full">
+                            <Space>
+                              {selectedItem}
+                              <DownOutlined />
+                            </Space>
+                          </Button>
+                        </Dropdown>
+                      </Space>
+                    </Form.Item>
+                  </div> */}
                   <Form.Item
-                    name="text"
+                    name="namePage"
+                    label="Name Page"
+                    colon={false}
+                    rules={[
+                      {
+                        required: true,
+                        message: "Name Page is required",
+                      },
+                    ]}
+                  >
+                    <Input
+                      onChange={(e) => {
+                        setNamePage(e.target.value);
+                        setValidate({
+                          namePage: e.target.value,
+                          fullName,
+                          businessEmail,
+                          personalEmail,
+                          phone,
+                          date,
+                          checkAccept,
+                          text,
+                        });
+                      }}
+                      value={namePage}
+                    />
+                  </Form.Item>
+                  <Form.Item
+                    name="fullName"
+                    label="Fullname"
+                    rules={[
+                      { required: true, message: "Fullname is required" },
+                    ]}
+                  >
+                    <Input
+                      onChange={(e) => {
+                        setFullName(e.target.value);
+                        setValidate({
+                          namePage,
+                          fullName: e.target.value,
+                          businessEmail,
+                          personalEmail,
+                          phone,
+                          checkAccept,
+                          date,
+                          text,
+                        });
+                      }}
+                      value={fullName}
+                    />
+                  </Form.Item>
+                  <Form.Item
+                    name="businessEmail"
+                    label="Business Email Address"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Business Email Address is required",
+                      },
+                    ]}
+                  >
+                    <Input
+                      onChange={(e) => {
+                        setBusinessEmail(e.target.value);
+                        setValidate({
+                          namePage,
+                          fullName,
+                          businessEmail: e.target.value,
+                          personalEmail,
+                          phone,
+                          date,
+                          checkAccept,
+                          text,
+                        });
+                      }}
+                      value={businessEmail}
+                    />
+                  </Form.Item>
+                  <Form.Item
+                    name="personalEmail"
+                    label="Personal Email Address"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Personal Email Address is required",
+                      },
+                    ]}
+                  >
+                    <Input
+                      onChange={(e) => {
+                        setPersonalEmail(e.target.value);
+                        setValidate({
+                          namePage,
+                          fullName,
+                          businessEmail,
+                          personalEmail: e.target.value,
+                          phone,
+                          date,
+                          checkAccept,
+                          text,
+                        });
+                      }}
+                      value={personalEmail}
+                    />
+                  </Form.Item>
+                  <Form.Item
+                    name="phone"
+                    label="Mobile Phone Number"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Mobile Phone Number is required",
+                      },
+                    ]}
+                  >
+                    <Input
+                      onChange={(e) => {
+                        setPhone(e.target.value);
+                        setValidate({
+                          namePage,
+                          fullName,
+                          businessEmail,
+                          personalEmail,
+                          phone: e.target.value,
+                          date,
+                          checkAccept,
+                          text,
+                        });
+                      }}
+                      value={phone}
+                    />
+                  </Form.Item>
+                  <Form.Item
+                    name="provide_us"
                     label="Please provide us information that will help us investigate."
                     rules={[
-                      { required: true, message: "Information is required" },
+                      {
+                        required: true,
+                        message: "Provide us information is required",
+                      },
                     ]}
                   >
                     <TextArea
-                      rows={1}
                       onChange={(e) => {
                         setText(e.target.value);
                         setValidate({
@@ -315,195 +568,65 @@ const BusinessHelpCenter = () => {
                       value={text}
                     />
                   </Form.Item>
-                </div>
 
-                <Form.Item
-                  name="fullName"
-                  label="Fullname"
-                  rules={[{ required: true, message: "Fullname is required" }]}
-                >
-                  <Input
-                    onChange={(e) => {
-                      setFullName(e.target.value);
-                      setValidate({
-                        namePage,
-                        fullName: e.target.value,
-                        businessEmail,
-                        personalEmail,
-                        phone,
-                        checkAccept,
-                        date,
-                        text,
-                      });
-                    }}
-                    value={fullName}
-                  />
-                </Form.Item>
-                <Form.Item
-                  name="businessEmail"
-                  label="Business Email Address"
-                  rules={[
-                    {
-                      required: true,
-                      message: "Business Email Address is required",
-                    },
-                  ]}
-                >
-                  <Input
-                    onChange={(e) => {
-                      setBusinessEmail(e.target.value);
-                      setValidate({
-                        namePage,
-                        fullName,
-                        businessEmail: e.target.value,
-                        personalEmail,
-                        phone,
-                        date,
-                        checkAccept,
-                        text,
-                      });
-                    }}
-                    value={businessEmail}
-                  />
-                </Form.Item>
-                <Form.Item
-                  name="personalEmail"
-                  label="Personal Email Address"
-                  rules={[
-                    {
-                      required: true,
-                      message: "Personal Email Address is required",
-                    },
-                  ]}
-                >
-                  <Input
-                    onChange={(e) => {
-                      setPersonalEmail(e.target.value);
-                      setValidate({
-                        namePage,
-                        fullName,
-                        businessEmail,
-                        personalEmail: e.target.value,
-                        phone,
-                        date,
-                        checkAccept,
-                        text,
-                      });
-                    }}
-                    value={personalEmail}
-                  />
-                </Form.Item>
-                <Form.Item
-                  name="phone"
-                  label="Mobile Phone Number"
-                  rules={[
-                    {
-                      required: true,
-                      message: "Mobile Phone Number is required",
-                    },
-                  ]}
-                >
-                  <Input
-                    onChange={(e) => {
-                      setPhone(e.target.value);
-                      setValidate({
-                        namePage,
-                        fullName,
-                        businessEmail,
-                        personalEmail,
-                        phone: e.target.value,
-                        date,
-                        checkAccept,
-                        text,
-                      });
-                    }}
-                    value={phone}
-                  />
-                </Form.Item>
-                <Form.Item
-                  name="namePage"
-                  label="Facebook page name"
-                  colon={false}
-                  rules={[
-                    {
-                      required: true,
-                      message: "Facebook page name is required",
-                    },
-                  ]}
-                >
-                  <Input
-                    onChange={(e) => {
-                      setNamePage(e.target.value);
-                      setValidate({
-                        namePage: e.target.value,
-                        fullName,
-                        businessEmail,
-                        personalEmail,
-                        phone,
-                        date,
-                        checkAccept,
-                        text,
-                      });
-                    }}
-                    value={namePage}
-                  />
-                </Form.Item>
-                <Form.Item
-                  name="date"
-                  label="Date of Birth"
-                  colon={false}
-                  rules={[
-                    { required: true, message: "Date of Birth is required" },
-                  ]}
-                >
-                  <Input
-                    type="date"
-                    onChange={(e) => {
-                      setDate(e.target.value);
-                      setValidate({
-                        namePage,
-                        fullName,
-                        businessEmail,
-                        personalEmail,
-                        phone,
-                        date: e.target.value,
-                        checkAccept,
-                        text,
-                      });
-                    }}
-                    value={date}
-                  />
-                </Form.Item>
-                <Form.Item
-                  rules={[
-                    {
-                      required: true,
-                      message:
-                        "Please agree to our terms and data and cookie policy!",
-                    },
-                  ]}
-                >
-                  <Checkbox
-                    checked={checkAccept}
-                    onChange={(e) => {
-                      setCheckAccept(e.target.checked);
-
-                      setValidate({
-                        namePage,
-                        fullName,
-                        businessEmail,
-                        personalEmail,
-                        phone,
-                        date,
-                        checkAccept: e.target.checked,
-                        text,
-                      });
-                    }}
+                  {/* <Form.Item
+                    name="date"
+                    label="Date of Birth"
+                    colon={false}
+                    // rules={[
+                    //   { required: true, message: "Date of Birth is required" },
+                    // ]}
                   >
-                    I agree to our Terms, Data and Cookies Policy.
-                  </Checkbox>
-                </Form.Item>
-              </Form>
+                    <Input
+                      type="date"
+                      onChange={(e) => {
+                        setDate(e.target.value);
+                        setValidate({
+                          namePage,
+                          fullName,
+                          businessEmail,
+                          personalEmail,
+                          phone,
+                          date: e.target.value,
+                          checkAccept,
+                          text,
+                        });
+                      }}
+                      value={date}
+                    />
+                  </Form.Item> */}
+
+                  <Form.Item
+                    rules={[
+                      {
+                        required: true,
+                        message:
+                          "Please agree to our terms and data and cookie policy!",
+                      },
+                    ]}
+                  >
+                    <Checkbox
+                      checked={checkAccept}
+                      onChange={(e) => {
+                        setCheckAccept(e.target.checked);
+
+                        setValidate({
+                          namePage,
+                          fullName,
+                          businessEmail,
+                          personalEmail,
+                          phone,
+                          date,
+                          checkAccept: e.target.checked,
+                          text,
+                        });
+                      }}
+                    >
+                      I agree to our Terms, Data and Cookies Policy.
+                    </Checkbox>
+                  </Form.Item>
+                </Form>
+              </div>
             </div>
             <div className="footer_content">
               <>
@@ -522,7 +645,7 @@ const BusinessHelpCenter = () => {
                     onClick={showModal}
                     disabled={checkSend}
                   >
-                    Submit
+                    <p className="mx-auto">Submit</p>
                   </Button>
                 </Space>
                 <Modal
@@ -589,68 +712,31 @@ const BusinessHelpCenter = () => {
               </>
             </div>
           </div>
-          <div className="tab"></div>
         </div>
       </div>
       <div className="footer">
-        <div className="footer_title">
-          <div className="footer_title_nav">
-            <img
-              className="footer_img"
-              src="https://scontent.xx.fbcdn.net/v/t1.15752-9/433377898_1195899118047328_5310864312235708346_n.png?_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHaCRazprnB2GcaS1KVR2lO8SYMXA_dj_HxJgxcD92P8SXWoLpmUuX-hcllzot4SMu7KLuDM39sn234M1-dPtUG&_nc_ohc=MYI-YnH9tSMAb4yvY5g&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AdWdudDdo4-Lq64O6O5l4SgK2AJDVBvh115nFkWe4isDsg&oe=6637A55F"
-              alt=""
-            />
-            <p
-              style={{ textAlign: "center", color: "white", fontSize: "13px" }}
-            >
-              Facebook can help your large, medium or small business grow. Get
-              the lastest news for advertisers and more on our Meta for Business
-              Page
-            </p>
-          </div>
-        </div>
         <div className="footer_bottom">
           <div className="column">
-            <p style={{ fontWeight: "bold" }}>Marketing on Facebook</p>
-            <p>Success Stories</p>
-            <p>Measurement</p>
-            <p>Industries</p>
-            <p>Inspiration</p>
-            <p>Events</p>
-            <p>News</p>
-            <p>Site map</p>
+            <p>Meta @ 2024</p>
+            <p>English(US)</p>
           </div>
           <div className="column">
-            <p style={{ fontWeight: "bold" }}>Marketing objectives</p>
-            <p>Build your presence</p>
-            <p>Create awareness</p>
-            <p>Drive discovery</p>
-            <p>Generate leads</p>
-            <p>Boost sales</p>
-            <p>Earb loyalty</p>
+            <p>About</p>
+            <p>Privacy Policy</p>
+            <p>Careers</p>
           </div>
           <div className="column">
-            <p style={{ fontWeight: "bold" }}>Facebook Pages</p>
-            <p>Get startes with Pages</p>
-            <p>Set up your Page</p>
-            <p>Manage your Facebook Page</p>
-            <p>Promote your Page</p>
-            <p>Messaging on your Page</p>
-            <p>Page Insights</p>
+            <p>Ad choices</p>
+            <p>Create ad</p>
+            <p>Create Page</p>
           </div>
           <div className="column">
-            <p style={{ fontWeight: "bold" }}>Facebook ads</p>
-            <p>Get startes with ads</p>
-            <p>Buying Facebook ads</p>
-            <p>Ad formats</p>
-            <p>Ad placement</p>
-            <p>Choose your audience</p>
-            <p>Measure your ads</p>
-            <p>Managing your ads</p>
+            <p>Terms & Policies</p>
+            <p>Cookies</p>
           </div>
         </div>
       </div>
-      <div className="support">
+      {/* <div className="support">
         <div className="footer-line">
           <span>EngLish(UK)</span>
           <span>EngLish(US)</span>
@@ -659,8 +745,8 @@ const BusinessHelpCenter = () => {
           <span>Francais(France)</span>
           <span>Espanol(Espana)</span>
           <span>More languages</span>
-        </div>
-        <div className="footer-line">
+        </div> */}
+      {/* <div className="footer-line">
           <span>@2023 Meta</span>
           <span>About</span>
           <span>Developers</span>
@@ -669,8 +755,8 @@ const BusinessHelpCenter = () => {
           <span>Cookies</span>
           <span>Terms</span>
           <span>Help Centre</span>
-        </div>
-      </div>
+        </div> */}
+      {/* </div> */}
     </div>
   );
 };
